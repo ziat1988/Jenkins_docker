@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('duckerhub_ziat1988')
+    }
 
     stages {
 
@@ -48,7 +51,9 @@ pipeline {
         stage ('Push image to Dockerhub') {
             steps {
                 sh 'docker tag cv_trinh:1.1 ziat1988/cv_trinh:1.1'
+                sh "docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW"
                 sh 'docker push ziat1988/cv_trinh:1.1'
+                sh "docker logout"
             }
         }
 
