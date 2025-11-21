@@ -18,7 +18,7 @@ pipeline {
 
         stage ('Run container') {
             steps {
-                sh 'docker run -d -p 8083:80 cv_trinh cv_trinh:1.0'
+                sh 'docker run -d -p 8083:80 cv_trinh:1.0'
             }
             post {
                 success {
